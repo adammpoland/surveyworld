@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+     <title>Quizes</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">      <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+     <link rel="stylesheet" type="text/css" href="darkred.css">
+
+
+     <script>
+       
+      </script>
+
+  </head>
+
+  <body>
+
+      <ul>
+        <li><a class="active" href="/">Home </a></li>
+        
+        <% if(auth == "true") {%>
+          <li><a href="/makeTest">Make a Survey</a></li>
+          <li><a href="/mySurveys">My Surveys</a></li>
+          <li><a href="/finishedSurveys">Finished Surveys</a></li>
+        <% } else { %>
+          <li><a href="/registerUser">Register</a></li>
+          <li><a href="/login">Login</a></li>
+        <% } %>
+      </ul>
+
+      <br>
+
+    <div class="container">
+   
+    <div class="container">
+        <h1>New Surveys:</h1> 
+        <div class="row flex">
+          <% for(let i=0; i<tests.length; i++) {%>
+            
+
+            
+            <div class="col s12 m12 l12">
+              <div class="card grey darken-3">
+                  
+                <div class="card-content white-text">
+                    <span class="card-title"><%=tests[i].name%></span>
+                  <p><%=tests[i].description%></p>
+                  <p>Number of Questions: <%=tests[i].numOfQuestions%></p>              
+                
+                </div>
+                <div class="card-action">
+                  <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
+                  <a href="#">share</a>
+                </div>
+              </div>
+
+            </div>
+         
+
+          <% } %>
+
+      </div>
+    </div>
+              
+  <br>
+
+</div>
+
+
+  <div class="container">
+    <h1>Humans:</h1> 
+    <div class="row flex">
+    
+
+        
+      <% for(let i=0; i<tests.length; i++) {%>
+        <% if(tests[i].categorie=="humans") {%>
+            
+      
+        <div class="col s12 m4 l4">
+          <div class="card grey darken-3">
+                          
+
+            <div class="card-content white-text">
+                <span class="card-title"><%=tests[i].name%></span>
+              <p><%=tests[i].description%></p>
+              <p>Number of Questions: <%=tests[i].numOfQuestions%></p>              
+                          
+            </div>
+            <div class="card-action">
+              <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
+              <a href="#">share</a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+
+      <% } %>
+    
+
+  </div>
+</div>
+
+<div class="container">
+    <h1>Robots:</h1> 
+    <div class="row flex">
+    
+
+        
+      <% for(let i=0; i<tests.length; i++) {%>
+        <% if(tests[i].categorie=="robots") {%>
+            
+      
+        <div class="col s12 m4 l4">
+          <div class="card blue-grey darken-1">
+                          
+
+            <div class="card-content white-text">
+                <span class="card-title"><%=tests[i].name%></span>
+              <p><%=tests[i].description%></p>
+              <p>Number of Questions: <%=tests[i].numOfQuestions%></p>              
+                          
+            </div>
+            <div class="card-action">
+              <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
+              <a href="#">share</a>
+            </div>
+          </div>
+        </div>
+        <% } %>
+
+      <% } %>
+    
+
+  </div>
+</div>
+
+  </body>
+</html>

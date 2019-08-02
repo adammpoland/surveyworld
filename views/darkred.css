@@ -1,0 +1,267 @@
+
+      body { 
+        background-image: url("orangeBack.jpg");
+        background-color:rgb(243, 140, 55);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        
+        /*background-image: url("img/red.jpg");*/
+        font-family: 'IBM Plex Serif', serif;
+
+        font-size: large;
+      }
+
+      .container{
+       /* max-width: 800px;*/
+        margin: auto;
+        padding: 15px;
+        overflow:hidden;
+        color: darkgray;
+        float: left;
+      }
+      .top{
+        margin: auto;
+        background-color: black;
+        opacity: 0.8;
+        border: 1px solid red;
+        padding: 1px 15px;
+        overflow:hidden;
+      }
+      .containerInner{
+       
+      
+        font-family: Railway;
+        border: 1px solid #ffd300;;
+
+
+      }
+
+      .items{
+        padding:1em;
+        border:1px black;
+      }
+
+      input.items{
+        width:200px;
+        height: 2em;
+        background-color: red;
+        border: 1px solid gray; 
+        padding: 5px;
+        text-align: center;
+        font-size: large;
+        margin:auto;
+        
+      }
+
+      input.items:hover{
+        background-color: darkorange;
+
+      }
+      input.delete:hover{
+        background-color: darkorange;
+      }
+
+      input.delete{
+        width: 200px;
+        height: 2em;
+        background-color: red;
+        border: 1px solid gray; 
+        padding:5px;
+        margin:auto;
+        text-align:center;
+        font-size: large;
+
+      }
+
+     .btn{
+      max-width: 250px;
+      height: 3em;
+      background-color: orange;
+      border: 1px solid gray; 
+      font-size: larger;
+      cursor: pointer;
+      color: black;
+     }
+
+     .btn.hover{
+       background-color: darkslategray;
+     }
+
+      input.upload{
+        width:200px;
+        height: 2em;
+        background-color: red;
+        border: 1px solid gray; 
+        padding: 5px;
+        text-align: center;
+        font-size: large;
+      }
+
+      .fileControl{
+        float: left;
+      }
+
+      
+      .title{
+        font-size:80px;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: transparent;
+
+        top: 0;
+        width: 100%;
+      }
+      
+      li {
+        float: left;
+        
+        
+
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 30px;
+        text-decoration: none;
+      }
+      
+      li a:hover:not(.active) {
+        background-color: darkred;
+        color: grey;
+      }
+      
+      .active {
+        background-color: darkgoldenrod;
+      }
+
+      .custom-file-upload {
+        width: 400px;
+        height: 3em;
+        background-color: red;
+        border: 1px solid gray; 
+        font-size: larger;
+        cursor: pointer;
+        color: black;
+    }
+    input.submit{
+      background-color:darkred;
+      border:1px;
+      border-color:darkred;
+      max-width:200px;
+      height:20px;
+      color:red;
+    }
+    
+    .FrameContainer{
+      width:auto;
+      background-color: darkgrey;
+      opacity: 0.9;
+      border: 1px solid red;
+      padding: 20px;
+      overflow:hidden;
+    }
+    .frames{
+      padding: 10px;
+
+      float: left;
+      border: 1px solid red;
+      margin:auto;
+      width: 50%;
+
+    }
+    .truncate {
+      max-width: 350px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    a{
+      text-decoration: none;
+      text-align: center;
+
+    }
+  
+    a:hover{
+      color:orange;
+    }
+    
+    .input-field input[type=text] {
+      color: black;
+      background-color: transparent;
+      border-bottom: 1px solid black;
+      box-shadow: 0 1px 0 0 black;
+    }
+  
+    .input-field input[type=text]:placeholder {
+      color: black;
+      background-color: transparent;
+      border-bottom: 1px solid black;
+      box-shadow: 0 1px 0 0 black;
+
+    }
+    .input-field input[type=text]:focus + label {
+      color: #000;
+      background-color: transparent;
+
+    }
+
+    .input-field input[type=text]:focus{
+      color: #000;
+      background-color: transparent;
+
+    }
+
+    .input-field input[type=text]:label {
+      color: #000;
+      background-color: transparent;
+
+    }
+
+    .input-field input[type=text]:focus {
+      border-bottom: 1px solid black;
+      box-shadow: 0 1px 0 0 black;
+      background-color: transparent;
+      color:black;
+    }
+    .input-field input[type=text].valid {
+      border-bottom: 1px solid transparent;
+      box-shadow: 0 1px 0 0 transparent;
+      background-color: transparent;
+      color:black;
+    }
+    
+    .input-field input[type=text].invalid {
+      border-bottom: 1px solid #000;
+      box-shadow: 0 1px 0 0 #000;
+      color:black;
+    }
+    .input-field .prefix.active {
+      color: black;
+      background-color: transparent;
+      border-bottom: 1px solid black;
+      box-shadow: 0 1px 0 0 black;
+    }
+    
+    
+ 
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .btnSmall{
+      background-color: orange;
+      border: 1px solid gray; 
+      margin:auto;
+      cursor: pointer;
+      color: black;
+      float: left;
+    }

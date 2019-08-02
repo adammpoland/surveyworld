@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+     <title>Results</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/css?family=Megrim&display=swap" rel="stylesheet">
+      <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="/darkred.css">
+     
+     <style>
+         
+     </style>
+
+  </head>
+
+  <body>
+
+     
+    <ul>
+      <li><a class="active" href="/">Home </a></li>
+      <li><a href="/makeTest">Make a Survey</a></li>
+      <li><a href="/mySurveys">My Surveys</a></li>
+      <li><a href="/finishedSurveys">Finished Surveys</a></li>
+    </ul>
+    
+      <br>
+
+      <div class="container">
+        <h2><%=test.name%></h2>
+        <div class="row">
+
+            <% for(let i=0; i<test.numOfQuestions; i++) {%>
+          <div class="col s12 m5 l5">
+            <div class="card blue-grey darken-1">
+              <!-- displays data for each question-->
+                <span class="card-title"><%=test.questions[i].question%>:</span>
+                  
+                <div id="tester<%=i%>" style="auto;height:250px;"></div>
+                <script>
+                  var data = [
+                    {
+                      x: ['Yes', 'Neutral', 'No'],
+                      y: [<%=test.questions[i].yes%>, <%=test.questions[i].neutral%>, <%=test.questions[i].no%>],
+                      type: 'bar'
+                    }
+                  ];
+
+                  Plotly.newPlot('tester<%=i%>', data);
+                </script>
+            </div>
+          </div>
+
+            
+          <% } %>
+
+
+     
+                  
+                    
+            </div>
+          </div>
+      
+   
+     
+  </body>
+</html>
