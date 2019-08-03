@@ -15,53 +15,103 @@
     
      <link rel="stylesheet" type="text/css" href="darkred.css">
 
-
      <script>
-       
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+      
+        // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+        var collapsibleElem = document.querySelector('.collapsible');
+        var collapsibleInstance = M.Collapsible.init(collapsibleElem);
+      
+        // Or with jQuery
+      
+        
       </script>
+     
 
   </head>
 
   <body>
 
-      <ul>
-        <li><a class="active" href="/">Home </a></li>
-        
-        <% if(auth == "true") {%>
-          <li><a href="/makeTest">Make a Survey</a></li>
-          <li><a href="/mySurveys">My Surveys</a></li>
-          <li><a href="/finishedSurveys">Finished Surveys</a></li>
-        <% } else { %>
-          <li><a href="/registerUser">Register</a></li>
-          <li><a href="/login">Login</a></li>
-        <% } %>
-      </ul>
+      <div class="navbar-fixed" >
+          <nav>
+            
+              <div id="backgroundRed2" class="nav-wrapper">
+    
+                <a href="#" data-target="mobile-demo" class="button-collapse sidenav-trigger show-on-large right"><i class="material-icons">menu</i></a>
+                <a class="white-text flow-text" href="/"> Saguaro Surveys</a>
+                <ul class="right hide-on-med-and-down">
+                  <% if(auth == "true") { %>
 
-      <br>
+                    <li><a href="/makeTest">Make a Survey</a></li>
+                    <li><a href="/mySurveys">My Surveys</a></li>
+                    <li><a href="/finishedSurveys">Finished Surveys</a></li>
+                  <% } else { %>
+                    <li><a href="/registerUser">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                  <% } %>
+                </ul>
+              </div>
 
+              <form>
+                  <div id="backgroundRed" class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                  </div>
+                </form>
+            </nav>
+          
+           
+            
+          </div>
+
+          <ul class="sidenav" id="mobile-demo">
+            <div class="background">
+              <img src="cactus.jpg" class="responsive-img">
+            </div>
+            
+              <li><a class="white-text name" href="/">Saguaro Surveys </a></li>
+              <% if(auth == "true") { %>
+                <li><a class="white-text name" href="/makeTest">Make a Survey</a></li>
+                <li><a class="white-text name" href="/mySurveys">My Surveys</a></li>
+                <li><a class="white-text name" href="/finishedSurveys">Finished Surveys</a></li>
+              <% } else { %>
+                <li><a class="white-text name" href="/registerUser">Register</a></li>
+                <li><a class="white-text name" href="/login">Login</a></li>
+              <% } %>
+          </ul>
     <div class="container">
+     
+      <br>
+      
+    </div>
    
     <div class="container">
-        <h1>New Surveys:</h1> 
+        <h1 class="center-align">Saguaro Surveys:</h1> 
         <div class="row flex">
           <% for(let i=0; i<tests.length; i++) {%>
             
 
             
-            <div class="col s12 m12 l12">
-              <div class="card grey darken-3">
+           
+              <div class="card grey darken-3 hoverable col s12 m12 l12">
                   
-                <div class="card-content white-text">
+              
                     <span class="card-title"><%=tests[i].name%></span>
-                  <p><%=tests[i].description%></p>
+                  <p class="truncate"><%=tests[i].description%></p>
                   <p>Number of Questions: <%=tests[i].numOfQuestions%></p>              
                 
-                </div>
+               
                 <div class="card-action">
                   <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
                   <a href="#">share</a>
+                  <a href="/results/<%=tests[i]._id%>">See Results</a>
+
                 </div>
-              </div>
+              
 
             </div>
          
@@ -73,9 +123,9 @@
               
   <br>
 
-</div>
 
 
+  <!-- 
   <div class="container">
     <h1>Humans:</h1> 
     <div class="row flex">
@@ -133,6 +183,7 @@
             <div class="card-action">
               <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
               <a href="#">share</a>
+              <a href="/results/<%=tests[i]._id%>">See Results</a>
             </div>
           </div>
         </div>
@@ -142,7 +193,12 @@
     
 
   </div>
+
+  
 </div>
+</div>
+-->
 
   </body>
+  
 </html>

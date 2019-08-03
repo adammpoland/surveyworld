@@ -3,36 +3,37 @@
 <html>
 
   <head>
-     <title>Results</title>
+     <title>My Surveys</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css?family=Megrim&display=swap" rel="stylesheet">
-      <!-- Compiled and minified CSS -->
+     
+     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">      <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="/darkred.css">
-     
-     <script> 
-       document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
-      });
-    </script>
+    
+     <link rel="stylesheet" type="text/css" href="darkred.css">
+
+
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+      </script>
 
   </head>
 
   <body>
-
+     
       <div class="navbar-fixed" >
           <nav>
             
               <div id="backgroundRed2" class="nav-wrapper">
     
                 <a href="#" data-target="mobile-demo" class="button-collapse sidenav-trigger show-on-large right"><i class="material-icons">menu</i></a>
-                <a class="white-text flow-text left" href="/"> Saguaro Surveys</a>
+                <a class="white-text left flow-text" href="/"> Saguaro Surveys</a>
                 <ul class="right hide-on-med-and-down">
                   <% if(auth == "true") { %>
 
@@ -46,7 +47,6 @@
                 </ul>
               </div>
 
-            
             </nav>
           
            
@@ -55,10 +55,10 @@
 
           <ul class="sidenav" id="mobile-demo">
             <div class="background">
-              <img src="/cactus.jpg" class="responsive-img">
+              <img src="cactus.jpg" class="responsive-img">
             </div>
             
-              <li><a class="white-text name flow-text" href="/">Saguaro Surveys </a></li>
+              <li><a class="white-text name" href="/">Saguaro Surveys </a></li>
               <% if(auth == "true") { %>
                 <li><a class="white-text name" href="/makeTest">Make a Survey</a></li>
                 <li><a class="white-text name" href="/mySurveys">My Surveys</a></li>
@@ -68,36 +68,41 @@
                 <li><a class="white-text name" href="/login">Login</a></li>
               <% } %>
           </ul>
+    <br>
+    <div class="container">
 
-      <br>
-      <div class="container">
-        <h2><%=test.name%></h2>
-        <div class="row">
+    <h1>My Surveys:</h1> 
+    <div class="row flex">
+    
 
-            <% for(let i=0; i<test.numOfQuestions; i++) {%>
-          <div class=" container col s12 m12 l12">
-            <div class="card grey darken-2">
-              <!-- displays data for each question-->
-                <span class="white-text name" class="card-title"> <%=test.questions[i].question%>:</span>
-                  
-                <div id="tester<%=i%>"></div>
-                <script>
-                  var data = [
-                    {
-                      x: ['Yes', 'Neutral', 'No'],
-                      y: [<%=test.questions[i].yes%>, <%=test.questions[i].neutral%>, <%=test.questions[i].no%>],
-                      type: 'bar'
-                    }
-                  ];
-
-                  Plotly.newPlot('tester<%=i%>', data);
-                </script>
-            </div>
-          </div>
-
+        
+      <% for(let i=0; i<tests.length; i++) {%>
+       
             
-          <% } %>
+           
+          <div class="card grey darken-3 hoverable col s12 m12 l12">
+                  
+              
+              <span class="card-title"><%=tests[i].name%></span>
+            <p class="truncate"><%=tests[i].description%></p>
+            <p>Number of Questions: <%=tests[i].numOfQuestions%></p>              
+          
+         
+          <div class="card-action">
+            <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
+            <a href="#">share</a>
+            <a href="/results/<%=tests[i]._id%>">See Results</a>
+
+          </div>
+        
+
       </div>
-    </div>
+   
+
+      <% } %>
+    
+
+  </div>
+</div>
   </body>
 </html>

@@ -22,7 +22,6 @@
 
       
       #regForm {
-        background-color:rgb(223, 162, 111);
         margin: 100px auto;
         font-family: Raleway;
         padding: 40px;
@@ -88,16 +87,51 @@
       /* Mark the steps that are finished and valid: */
      
       </style>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+      </script>
       <body>
       
-        <ul>
-          <li><a class="active" href="/">Home </a></li>
+        <div class="navbar-fixed" >
+          <nav>
+            
+              <div id="backgroundRed2" class="nav-wrapper">
+    
+                <a href="#" data-target="mobile-demo" class="button-collapse sidenav-trigger show-on-large right"><i class="material-icons">menu</i></a>
+                <a class="white-text left flow-text" href="/"> Saguaro Surveys</a>
+                <ul class="right hide-on-med-and-down">
+                  
+
+                    <li><a href="/makeTest">Make a Survey</a></li>
+                    <li><a href="/mySurveys">My Surveys</a></li>
+                    <li><a href="/finishedSurveys">Finished Surveys</a></li>
+
+                </ul>
+              </div>
+
+            </nav>
           
-          
-          <li><a href="/makeTest">Make a Survey</a></li>
-          <li><a href="/mySurveys">My Surveys</a></li>
-          <li><a href="/finishedSurveys">Finished Surveys</a></li>
-        </ul>
+           
+            
+          </div>
+
+          <ul class="sidenav" id="mobile-demo">
+            <div class="background">
+              <img src="/cactus.jpg" class="responsive-img">
+            </div>
+            
+              <li><a class="white-text name" href="/">Saguaro Surveys </a></li>
+              
+                <li><a class="white-text name" href="/makeTest">Make a Survey</a></li>
+                <li><a class="white-text name" href="/mySurveys">My Surveys</a></li>
+                <li><a class="white-text name" href="/finishedSurveys">Finished Surveys</a></li>
+             
+          </ul>
+   
   
         <br>
       <form id="regForm" method="POST" action="/submitTest/<%=test._id%>">
@@ -106,7 +140,7 @@
         <input type="hidden" name="takenBy" value="<%=email%>">
         <% for(let i=0; i<test.numOfQuestions; i++) {%>
 
-        <div class="tab"><%=test.questions[i].question%>:
+        <div class="tab white-text flow-text"><%=test.questions[i].question%>:
           <p>
             <label>
               <input name="group[<%=i%>]" type="radio" value="yes" />

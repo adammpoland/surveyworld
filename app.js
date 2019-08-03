@@ -99,6 +99,24 @@ testSession = req.session;
 });
 
 
+app.get('/results/:id', (req, res) => {
+    testSession = req.session;
+
+    Test.findOne({_id: req.params.id},(err,test)=>{
+        console.log(req.params.id);
+
+        console.log(test);
+        res.render('results', { 
+            test: test,
+            email: testSession.email,
+            auth: testSession.auth
+        });
+    })
+    
+});
+
+
+
 app.get('/login',(req,res) => {
    res.render('login');
 });
@@ -144,7 +162,63 @@ app.post('/download', function (req, res) {
     
 });
 
+app.get('/mySurveys', (req, res) => {
+    testSession = req.session;
+    
+    if(testSession.auth=='true'){
 
+        try {
+        //DATABASE TO ARRAY
+        Test.find({createdBy: testSession.email}, (err, tests) => {
+            if (err) return console.log(err);
+    
+            res.render('mySurveys', { 
+                tests: tests,
+                email: testSession.email,
+                auth: testSession.auth                 
+            });
+        });
+    
+        console.log(testSession.email);
+    } catch (error) {
+        console.log(error);
+    }
+
+                  
+
+}else{
+    res.redirect('/login');
+}
+});
+
+app.get('/finishedSurveys', (req, res) => {
+    testSession = req.session;
+    
+    if(testSession.auth=='true'){
+
+        try {
+        //DATABASE TO ARRAY
+        Test.find({}, (err, tests) => {
+            if (err) return console.log(err);
+    
+            res.render('finishedSurveys', { 
+                tests: tests,
+                email: testSession.email,
+                auth: testSession.auth                 
+            });
+        });
+    
+        console.log(testSession.email);
+    } catch (error) {
+        console.log(error);
+    }
+
+                  
+
+}else{
+    res.redirect('/login');
+}
+});
 
 app.get('/test/:id', function (req, res) {
    
@@ -196,15 +270,13 @@ app.get('/contacts', function (req, res) {
 
 
 
-app.get('/results', (req, res) => {
-   res.render('results')
-});
+
 
 
 app.post('/submitTest/:id', (req, res) =>{
    console.log("submitted");
    console.log(req.body.takenBy);
-
+   testSession = req.session;
    if(testSession.auth=='true'){
 
     try {
@@ -246,7 +318,9 @@ app.post('/submitTest/:id', (req, res) =>{
                   console.log(test.questions[0].neutral);
     
                   res.render('results', { 
-                    test: test    
+                    test: test,
+                    email: testSession.email,
+                    auth: testSession.auth    
                 });
     
     

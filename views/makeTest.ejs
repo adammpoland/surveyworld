@@ -3,7 +3,7 @@
 <html>
 
   <head>
-     <title>Homebase</title>
+     <title>New Survey</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -24,21 +24,56 @@
           var instances = M.FormSelect.init(elems);
         });
        
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
      </script>
   </head>
 
   <body>
 
-      <ul>
-        <li><a class="active" href="/">Home </a></li>
-        <li><a href="/makeTest">Make a Survey</a></li>
-        <li><a href="/mySurveys">My Surveys</a></li>
-        <li><a href="/finishedSurveys">Finished Surveys</a></li>
-      </ul>
+  
+      <div class="navbar-fixed" >
+          <nav>
+            
+              <div id="backgroundRed2" class="nav-wrapper">
+    
+                <a href="#" data-target="mobile-demo" class="button-collapse sidenav-trigger show-on-large right"><i class="material-icons">menu</i></a>
+                <a class="white-text left flow-text" href="/"> Saguaro Surveys</a>
+                <ul class="right hide-on-med-and-down">
+                 
+                    <li><a href="/makeTest">Make a Survey</a></li>
+                    <li><a href="/mySurveys">My Surveys</a></li>
+                    <li><a href="/finishedSurveys">Finished Surveys</a></li>
+                 
+                </ul>
+              </div>
+
+             
+            </nav>
+          
+           
+            
+          </div>
+
+          <ul class="sidenav" id="mobile-demo">
+            <div class="background">
+              <img src="cactus.jpg" class="responsive-img">
+            </div>
+            
+              <li><a class="white-text name" href="/">Saguaro Surveys </a></li>
+              
+                <li><a class="white-text name" href="/makeTest">Make a Survey</a></li>
+                <li><a class="white-text name" href="/mySurveys">My Surveys</a></li>
+                <li><a class="white-text name" href="/finishedSurveys">Finished Surveys</a></li>
+
+          </ul>
+    <div class="container">
+
 
       <br>
       <% let j=1 %>
-      <div class="container">
           <h1 class="title">Make a Survey</h1>    
           <form action="/newTest" method="POST" id="quizForm">
 
@@ -46,17 +81,17 @@
             
               <div class="input-field col s12" >
                 <input id="name" name="name" type="text" class="validate" >
-                <label for="name">Name</label>
+                <label class=" black-text text-darken-2" for="name">Name</label>
               </div>
 
               <div class="input-field col s12" >
                 <input id="description" name="description" type="text" class="validate" >
-                <label for="description">Description</label>
+                <label class=" black-text text-darken-2" for="description">Description</label>
               </div>
 
             
         
-            <div class="input-field col s12 black-text text-darken-2">
+            <div class="input-field col s12">
                <select class="" id="select" form="quizForm" name="categorie">
                   <option value = "" disabled selected>Select Categorie</option>
                   <option value = "politics">Politics</option>
@@ -69,26 +104,28 @@
                   <option value = "environment">The Environment</option>
                   <option value = "environment">The Environment</option>
                </select>    
-               <label for="select">Categorie</label>
+               <label for="select" class=" black-text text-darken-2">Categorie</label>
            
             </div>
     
 
 
-            <span id="responce"></span>
+            <span id="responce1"></span>
             <input type="button" value="Add a Question" class="btn" onclick="addInput()"/>
 
 
             <br>
             <script>
             var countBox =1;
-            
+            var cb2 = 0;
             var boxName = 0;
             function addInput()
             {
               if(countBox<=10){
+               var responseBox = "responce"+countBox;
+                cb2=countBox +1;
                 var boxName="textBox"+countBox; 
-                document.getElementById('responce').innerHTML+='<br/>Question '+countBox+': <input type="text" id="'+boxName+'" name="'+boxName+'" "  /><br/>';
+                document.getElementById(responseBox).innerHTML+='<br/>Question '+countBox+': <input type="text" id="'+boxName+'" name="'+boxName+'" " /><br/> <span id="responce'+cb2+'"></span>';
                var count = document.getElementById('count').value=countBox;     
                 console.log(countBox);
                 countBox += 1;
