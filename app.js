@@ -402,8 +402,27 @@ app.get('/makeTest', (req, res) => {
     }
 });
 
+ app.get('/logout', (req, res) => {
+    req.session.destroy(function(err) {
+        // cannot access session here
+     })
+     res.redirect('/login');
+
+ });
+
  app.get('/registerUser', (req, res) => {
-    res.render('registerUser')
+    testSession = req.session;
+    //DATABASE TO ARRAY
+   
+
+        res.render('registerUser', { 
+            
+            email: testSession.email,
+            auth: testSession.auth                 
+        });
+
+  
+
  });
 
  app.post('/registerUser', (req, res) => {

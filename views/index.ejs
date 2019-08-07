@@ -3,10 +3,10 @@
 <html>
 
   <head>
-     <title>Quizes</title>
+     <title>Saguaro Surveys</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      
-     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">      <!-- Compiled and minified CSS -->
+     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     
     <!-- Compiled and minified JavaScript -->
@@ -48,12 +48,15 @@
                     <li><a href="/makeTest">Make a Survey</a></li>
                     <li><a href="/mySurveys">My Surveys</a></li>
                     <li><a href="/finishedSurveys">Finished Surveys</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+
                   <% } else { %>
                     <li><a href="/registerUser">Register</a></li>
                     <li><a href="/login">Login</a></li>
                   <% } %>
                 </ul>
               </div>
+<!--
 
               <form>
                   <div id="backgroundRed" class="input-field">
@@ -64,62 +67,60 @@
                 </form>
             </nav>
           
-           
+              -->        
+ 
             
           </div>
-
           <ul class="sidenav" id="mobile-demo">
             <div class="background">
               <img src="cactus.jpg" class="responsive-img">
             </div>
-            
               <li><a class="white-text name" href="/">Saguaro Surveys </a></li>
               <% if(auth == "true") { %>
                 <li><a class="white-text name" href="/makeTest">Make a Survey</a></li>
                 <li><a class="white-text name" href="/mySurveys">My Surveys</a></li>
                 <li><a class="white-text name" href="/finishedSurveys">Finished Surveys</a></li>
+                <li><a href="/logout">Log Out</a></li>
+
               <% } else { %>
                 <li><a class="white-text name" href="/registerUser">Register</a></li>
                 <li><a class="white-text name" href="/login">Login</a></li>
               <% } %>
           </ul>
-    <div class="container">
-     
-      <br>
-      
-    </div>
+  
+   <br>
    
-    <div class="container">
-        <h1 class="center-align">Saguaro Surveys:</h1> 
-        <div class="row flex">
+        <div class="row">
+            
           <% for(let i=0; i<tests.length; i++) {%>
             
-
-            
+              
+              <div class="container s12 col l6 offset-l3">
            
-              <div class="card grey darken-3 hoverable col s12 m12 l12">
+                  <div class="card grey darken-3 hoverable"> 
+                      
+                      <div class="card-content ">
+                          <p class="truncate"><span class="card-title"><%=tests[i].name%></span></p>
+                          <p class="truncate grey-text text-darken-4"><%=tests[i].description%></p>
+                          <p class="truncate grey-text text-darken-4">Number of Questions: <%=tests[i].numOfQuestions%></p>              
+                        
+                        <br>
+                          <div class="center-align card-action">
+                            <a class="btn" href="/test/<%=tests[i]._id%>">Take Quiz</a>
+                            <a class="btn" href="#">share</a>
+                            <a class="btn" href="/results/<%=tests[i]._id%>">See Results</a>
+                          </div>
+                        </div>
+                      
                   
-              
-                    <span class="card-title"><%=tests[i].name%></span>
-                  <p class="truncate"><%=tests[i].description%></p>
-                  <p>Number of Questions: <%=tests[i].numOfQuestions%></p>              
-                
-               
-                <div class="card-action">
-                  <a href="/test/<%=tests[i]._id%>">Take Quiz</a>
-                  <a href="#">share</a>
-                  <a href="/results/<%=tests[i]._id%>">See Results</a>
 
-                </div>
-              
-
-            </div>
+                  </div>
          
-
+              </div>
+              
           <% } %>
-
+        
       </div>
-    </div>
               
   <br>
 

@@ -3,8 +3,7 @@
         background-image: url("orangeBack.jpg");
         background-color:rgb(243, 140, 55);
         
-        font-family: 'IBM Plex Serif', serif;
-
+        font-family: 'Josefin Sans', sans-serif;
         font-size: large;
 
       }
@@ -43,18 +42,14 @@
         color: darkgray;
         float: left;
         max-width: 960px;
-        margin: auto;
       }
      
-      .containerInner{
-       
-      
-        font-family: Railway;
-        border: 1px solid #ffd300;;
-
+      .card{
+     font-family: 'Raleway', sans-serif;
+        
 
       }
-
+      
       .items{
         padding:1em;
         border:1px black;
@@ -80,24 +75,13 @@
         background-color: darkorange;
       }
 
-      input.delete{
-        width: 200px;
-        height: 2em;
-        background-color: red;
-        border: 1px solid gray; 
-        padding:5px;
-        margin:auto;
-        text-align:center;
-        font-size: large;
-
-      }
 
      .btn{
       max-width: 250px;
       height: 3em;
       background-color: orange;
       border: 1px solid gray; 
-      font-size: larger;
+     
       cursor: pointer;
       color: black;
      }
@@ -149,15 +133,7 @@
       color:red;
     }
     
-    .FrameContainer{
-      width:auto;
-      background-color: darkgrey;
-      opacity: 0.9;
-      border: 1px solid red;
-      padding: 20px;
-      overflow:hidden;
-    }
-   
+    
     
     a{
       text-decoration: none;
@@ -194,17 +170,6 @@
    
     
     
- 
-    .flex {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .btnSmall{
-      background-color: orange;
-      border: 1px solid gray; 
-      margin:auto;
-      cursor: pointer;
-      color: black;
-      float: left;
-    }
+.customCard{
+  height: 400px; /* Your height here */
+}
