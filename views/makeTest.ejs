@@ -75,7 +75,6 @@
 
 
       <br>
-      <% let j=1 %>
           <h1 class="title">Make a Survey</h1>    
           <form action="/newTest" method="POST" id="quizForm">
 
@@ -91,8 +90,21 @@
                 <label class=" black-text text-darken-2" for="description">Description</label>
               </div>
 
+                <p>
+                  <label>
+                    <input type="checkbox" name="commentable"/>
+                    <span>Comment Section</span>
+                  </label>
+                </p>
             
-        
+                <p>
+                    <label>
+                      <input type="checkbox" name="repeatable"/>
+                      <span>Repeatable</span>
+                    </label>
+                  </p>
+            <br>
+                  
             <div class="input-field col s12">
                <select class="" id="select" form="quizForm" name="categorie">
                   <option value = "" disabled selected>Select Categorie</option>
@@ -103,7 +115,6 @@
                   <option value = "psychology">Psychology</option>
                   <option value = "economics">Economics</option>
                   <option value = "culture">Culture</option>
-                  <option value = "environment">The Environment</option>
                   <option value = "environment">The Environment</option>
                </select>    
                <label for="select" class=" black-text text-darken-2">Categorie</label>

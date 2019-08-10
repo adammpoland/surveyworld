@@ -11,7 +11,6 @@ var session = require('express-session');
 const app = express();
 
 var methodOverride = require('method-override')
-var testSession;
 
 //promise
 mongoose.Promise = global.Promise;
@@ -105,7 +104,6 @@ app.get('/results/:id', (req, res) => {
     Test.findOne({_id: req.params.id},(err,test)=>{
         console.log(req.params.id);
 
-        console.log(test);
         res.render('results', { 
             test: test,
             email: testSession.email,
@@ -282,49 +280,63 @@ app.post('/submitTest/:id', (req, res) =>{
     try {
         Test.findOne({_id: req.params.id},(err,test)=>{
             console.log(req.params.id);
-    
-            // console.log(test);
-            // res.render('results', { 
-            //     test: test
-            // });
-    
-           
+            
         }).then(test => {
+            var taken = false;
             //test.name = req.body.title;
             //test.details = req.body.details;
-            for(var i = 0; i< test.numOfQuestions;i++){
-                if(req.body.group[i]=='yes'){
-                    test.questions[i].yes += 1;
-    
+            for(var i = 0; i< test.takenBy.length;i++){
+                if(test.takenBy[i].takenBy == testSession.email){
+                    taken=true;
                 }
-    
-                if(req.body.group[i]=='no'){
-                    test.questions[i].no += 1;
-    
+            
+            }
+            if((test.repeatable==true && taken ==false) || (test.repeatable==true && taken ==true) || (test.repeatable==false && taken == false)){
+                
+            
+                takenBy = {
+                    takenBy: req.body.takenBy,
+                    answers: req.body.group
+                }
+                test.takenBy.push(takenBy);
+                for(var i = 0; i< test.numOfQuestions;i++){
+                    if(req.body.group[i]=='yes'){
+                        test.questions[i].yes += 1;
+        
+                    }
+        
+                    if(req.body.group[i]=='no'){
+                        test.questions[i].no += 1;
+        
+                    }
+                    
+                    if(req.body.group[i]=='neutral'){
+                        test.questions[i].neutral += 1;
+        
+                    }
+                    console.log(req.body.group[i])
                 }
                 
-                if(req.body.group[i]=='neutral'){
-                    test.questions[i].neutral += 1;
-    
-                }
-                console.log(req.body.group[i])
+        
+                test.save()
+                .then(test => {
+                    console.log(test.questions[0].yes);
+                    console.log(test.questions[0].no);
+                    console.log(test.questions[0].neutral);
+        
+                    res.render('results', { 
+                        test: test,
+                        email: testSession.email,
+                        auth: testSession.auth    
+                    });
+        
+        
+                })
+
+            }else{
+                console.log("you can only take this test once")
+                res.redirect("/");
             }
-            
-      
-            test.save()
-              .then(test => {
-                  console.log(test.questions[0].yes);
-                  console.log(test.questions[0].no);
-                  console.log(test.questions[0].neutral);
-    
-                  res.render('results', { 
-                    test: test,
-                    email: testSession.email,
-                    auth: testSession.auth    
-                });
-    
-    
-              })
         })
     } catch (error) {
         console.log(error);
@@ -369,9 +381,22 @@ app.get('/makeTest', (req, res) => {
             //     console.log();
             //     var question:["question"+i]
             // }
+            console.log(req.body.commentable);
+            console.log(req.body.repeatable);
+            var c=false;
+            var r=false;
+            if(req.body.commentable){
+                c=true;
+            }
+            if(req.body.repeatable ){
+                r=true;
+            }
+
             var test = {
                 createdBy: testSession.email,
                 name: req.body.name,
+                repeatable: r,
+                commentable: c,
                 description: req.body.description,
                 numOfQuestions: req.body.numOfQuestions,
                 categorie: req.body.categorie,
@@ -401,6 +426,57 @@ app.get('/makeTest', (req, res) => {
         res.redirect('/login');
     }
 });
+
+
+app.post('/newComment/:id', (req, res) => {
+        console.log("submitted");
+        console.log(req.body.writtenBy);
+        testSession = req.session;
+        if(testSession.auth=='true'){
+     
+         try {
+             Test.findOne({_id: req.params.id},(err,test)=>{
+                 console.log(req.params.id);
+
+             }).then(test => {
+                 //test.name = req.body.title;
+                 //test.details = req.body.details;
+               
+            var comment = {
+                writtenBy: testSession.email,
+                title: req.body.title,
+                text: req.body.text
+
+            }
+
+            test.comments.push(comment);
+                 
+                 test.save()
+                   .then(test => {
+                       console.log(test.questions[0].yes);
+                       console.log(test.questions[0].no);
+                       console.log(test.questions[0].neutral);
+         
+                       res.redirect("/results/"+test._id);
+
+         
+                   })
+             })
+         } catch (error) {
+             console.log(error);
+         }
+     
+                       
+     
+     }else{
+         res.redirect('/login');
+     }
+     
+         
+     
+  
+});
+
 
  app.get('/logout', (req, res) => {
     req.session.destroy(function(err) {

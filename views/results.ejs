@@ -5,7 +5,7 @@
   <head>
      <title>Results</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css?family=Megrim&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway&display=swap" rel="stylesheet">
       <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -79,9 +79,9 @@
         <div class="row">
 
             <% for(let i=0; i<test.numOfQuestions; i++) {%>
-          <div class="col s12 l8 offset-l3">
+              <br>
+          <div class="container s12 col l8 offset-l2 center-align">
               <!-- displays data for each question-->
-              <div class="container">
 
                 <span class="white-text name" class="card-title"> <%=test.questions[i].question%>:</span>
 
@@ -110,11 +110,68 @@
 
                   Plotly.newPlot('tester<%=i%>', data);
                 </script>
-            </div>
           </div>
 
             
           <% } %>
     </div>
+
+    <div class="row">
+      <div class="container s12 col l8 offset-l2">
+      <h4 class="title">Comment Section</h4>    
+      <br>
+      <% if(auth=="true") {%>
+
+          <h5 class="title">New Comment</h5>    
+          <form action="/newComment/<%=test._id%>" method="POST" id="quizForm">
+
+              <div class="input-field col s12" >
+                <input id="name" name="title" type="text" class="validate" >
+                <label class="black-text text-darken-2" for="name">Title</label>
+              </div>
+
+              <div class="input-field col s12" >
+                <input id="description" name="text" type="text" class="validate" >
+                <label class=" black-text text-darken-2" for="description">Comment</label>
+              </div>
+
+          
+
+            <br>
+            <input type="submit" class="btn" value="Submit"> 
+          </form>
+        
+          <div class="row">
+            <% if(test.comments.length>0) {%>
+
+              <% for(let i=0; i<test.comments.length; i++) {%>
+                
+                      <div class="card grey darken-3 hoverable"id="backgroundRed2"> 
+                          
+                          <div class="card-content ">
+                              <p class="truncate grey-text text-darken-4"><span class="card-title"><%=test.comments[i].title%></span></p>
+                              <p class="truncate "><%=test.comments[i].writtenBy%></p>                          
+                              <p class="truncate "><%=test.comments[i].text%></p>                          
+                            <br>
+                            
+                          </div>
+                      </div>
+              <% } %>
+            <% } %>
+        </div>
+      </div>
+      
+
+      <% } else{  %>
+        <div class="card grey darken-3 hoverable"> 
+                          
+          <div class="card-content ">
+              <p class="truncate ">Login to Post a comment</p>                          
+              <p class="truncate "><a href="/login">Login</a></p>                          
+           
+            
+          </div>
+      </div>
+      <% }%>
   </body>
 </html>

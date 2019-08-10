@@ -2,7 +2,8 @@
       body { 
         background-image: url("orangeBack.jpg");
         background-color:rgb(243, 140, 55);
-        
+        background-size: cover;
+
         font-family: 'Josefin Sans', sans-serif;
         font-size: large;
 
@@ -22,18 +23,11 @@
         background-position: center;
         background-size: cover;
 
-        
+        padding-left: 10px;
+
       }
 
-      .hero-text {
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-      }
-
+    
       .container{
        /* max-width: 800px;*/
         margin: auto;
@@ -98,7 +92,6 @@
       nav {
         background-image: url("orangeBack.jpg");
         color: white;
-
       }
       
       .sidenav{
@@ -108,7 +101,8 @@
 
       li{
         background-color: darkred;
-        opacity: .5;      
+        opacity: .5;  
+            
       }
 
       li a:hover:not(.active) {
@@ -144,32 +138,13 @@
     a:hover{
       color:orange;
     }
-    
-    .input-field input[type=text] {
-     
-      
-    }
-  
-    .input-field input[type=text]:placeholder {
-     
-
-    }
-    .input-field input[type=text]:focus + label {
-     
-    }
 
 
     .input-field input[type=text]:focus {
       color: #000;
       background-color: transparent;
     }
-    .input-field input[type=text].valid {
-    
-    }
-    
    
-    
-    
 .customCard{
   height: 400px; /* Your height here */
 }

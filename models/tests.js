@@ -12,6 +12,14 @@ const TestSchema = new Schema({
         type: String,
         required: true
     },
+    repeatable:{
+        type: Boolean,
+        required: true
+    },
+    commentable:{
+        type: Boolean,
+        required: true
+    },
     description:{
         type: String,
         required: true
@@ -43,11 +51,43 @@ const TestSchema = new Schema({
         }
      
     }],
-    
-    date: {
-        type: Date,
-        default: Date.now
-    }
+    takenBy:[{
+        takenBy:{
+            type:String,
+            required:true
+        },
+        answers:[{
+            type:String,
+            required: true
+        }],
+        date: {
+            type: Date,
+            default: Date.now
+        },
+
+        required: false
+    }],
+    comments:[{
+        writtenBy: {
+            type:String,
+            required: true
+        },
+        title:{
+            type:String,
+            required: true
+        },
+        text:{
+            type:String,
+            required: true
+        },
+        date: {
+            type: Date,
+            default: Date.now
+        }
+       
+    }],
+    required: false
+
 });
 
 mongoose.model('tests', TestSchema)
