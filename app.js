@@ -241,34 +241,10 @@ app.get('/test/:id', function (req, res) {
         } catch (error) {
             console.log(error);
         }
-
-                      
-
     }else{
         res.redirect('/login');
     }
-    
-
 });
-
-
-
-app.get('/contacts', function (req, res) {
-    //DATABASE TO ARRAY
-   Person.find({},(err,persons)=>{
-        res.render('contacts', { 
-            persons: persons
-        });
-   })
-        
-   
-});
-
-
-
-
-
-
 
 
 app.post('/submitTest/:id', (req, res) =>{
@@ -400,20 +376,19 @@ app.get('/makeTest', (req, res) => {
                 description: req.body.description,
                 numOfQuestions: req.body.numOfQuestions,
                 categorie: req.body.categorie,
-                questions:[
-                
-                            {question: req.body.textBox1},
-                            {question: req.body.textBox2},
-                            {question: req.body.textBox3},
-                            {question: req.body.textBox4},
-                            {question: req.body.textBox5},
-                            {question: req.body.textBox6},
-                            {question: req.body.textBox7},
-                            {question: req.body.textBox8},
-                            {question: req.body.textBox9},
-                            {question: req.body.textBox10}
-                        ]
+                questions:[]
             }
+
+            for(var i=0;i<req.body.numOfQuestions;i++){
+                var question = {
+                    question: req.body.textbox[i]
+     
+                 }
+     
+                 test.questions.push(question);
+            }
+           
+
             console.log(test);
             new Test(test)
             .save();
@@ -510,7 +485,20 @@ app.post('/newComment/:id', (req, res) => {
         //     console.log();
         //     var question:["question"+i]
         // }
+        var uniqueEmail = false;
+        var uniqueUsername = false;
+
         console.log(req.body);
+        User.findOne({email: req.body.email},(err,test)=>{
+
+            console.log(test);
+            res.render('test', { 
+                test: test,
+                email: testSession.email
+            });
+        })
+       
+        
         var user = {
             name: req.body.name,
             password: req.body.password,

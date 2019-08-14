@@ -132,13 +132,14 @@
             var countBox =1;
             var cb2 = 0;
             var boxName = 0;
+            var MaxSurveyQuestions = 30;
             function addInput()
             {
-              if(countBox<=10){
+              if(countBox<=MaxSurveyQuestions){
                var responseBox = "responce"+countBox;
                 cb2=countBox +1;
                 var boxName="textBox"+countBox; 
-                document.getElementById(responseBox).innerHTML+='<br/>Question '+countBox+': <input type="text" id="'+boxName+'" name="'+boxName+'" " /><br/> <span id="responce'+cb2+'"></span>';
+                document.getElementById(responseBox).innerHTML+='<br/>Question '+countBox+': <input type="text" id="'+boxName+'" name="textbox[]" " /><br/> <span id="responce'+cb2+'"></span>';
                var count = document.getElementById('count').value=countBox;     
                 console.log(countBox);
                 countBox += 1;
